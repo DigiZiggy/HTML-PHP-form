@@ -9,14 +9,6 @@
         <title>Lisa</title>
         <style>
 
-            /*TABLE */
-            form {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 30%;
-                margin-left: 5px;
-            }
-
             input {
                 height: 17px;
             }
@@ -29,32 +21,51 @@
     </head>
     <body>
 
-        <div class="tab">
+        <div id="tab">
         <a href="index.html">Nimekiri</a>
+            <a> | </a>
         <a href="secondpage.html">Lisa</a></div>
 
-        <form class="w3-container w3-card-3 w3-white">
 
-            <p><label>Eesnimi:</label>
-                <input class="w3-input w3-border" name="first" type="text" ></p>
+        <form method="post">
 
-            <p><label>Perekonnanimi:</label>
-                <input class="w3-input w3-border" name="last" type="text"></p>
+            <table action="" method="" target="" class="add-form">
+                <tbody>
+                <tr>
+                    <td>Eesnimi:</td>
+                    <td><input name="eesnimi" value=""></td>
+                </tr>
+                <tr>
+                    <td>Perekonna nimi:</td>
+                    <td><input name="perenimi" value=""></td>
+                </tr>
+                <tr>
+                    <td>Telefonid:</td>
+                    <td><input name="telefon" value=""></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="telefon2" value=""></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="telefon3" value=""></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><br>
+                        <input name="salvesta" type="submit" value="Salvesta" style = "font-size:10px">
+                    </td>
+                </tr>
 
-            <p><label>Telefonid:</label>
-                <input class="w3-input w3-border" name="phone" type="text"></p>
-
-            <p><label></label>
-                <input class="w3-input w3-border" name="empty" type="text"></p>
-
-            <p><label></label>
-                <input class="w3-input w3-border" name="empty2" type="text"></p>
+                </tbody>
+            </table>
 
         </form>
 
         <footer>
-            <div class="footer">
-                <p>ICD0007 Näidisrakendus</p></div>
+            <div id="footer">
+                <p>ICD0007 Näidisrakendus</p>
+            </div>
         </footer>
 
     </body>
