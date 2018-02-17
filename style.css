@@ -1,0 +1,25 @@
+/*HEADER*/
+
+/* Style the tab */
+.tab {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+/*FOOTER*/
+.footer {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 35px;
+    text-align: right;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+//
+}
