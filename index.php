@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href ="style.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <title>Harjutustund 1</title>
         <style>
 
@@ -13,11 +12,13 @@
     </head>
     <body>
 
+
         <div id="tab">
-        <a href="index.html">Nimekiri</a>
+        <a href="index.php" id="list-page-link">Nimekiri</a>
             <a> | </a>
-        <a href="secondpage.html">Lisa</a></div>
-        
+        <a href="secondpage.php" id="add-page-link">Lisa</a></div>
+
+
          <table class = "table">
              <tr>
                  <th>Eesnimi</th>
@@ -25,15 +26,14 @@
                  <th>Telefonid</th>
              </tr>
              <tr>
-                 <td>
-                     <span>Alfreds</span>
-                 </td>
-                 <td>
-                     <span>SPaneil</span>
-                 </td>
-                 <td>
-                     <span>Jamaica</span>
-                 </td>
+                 <?php
+                 require_once("todofunctions.php");
+                 $items = get_items();
+                 $lines = file('data.txt');
+                    foreach ($lines as $line) {
+                        print $line;
+                    }
+                 ?>
              </tr>
              <tr>
                  <td>
@@ -58,6 +58,8 @@
                  </td>
              </tr>
         </table>
+
+
         <footer>
             <div id="footer">
                 <p>ICD0007 Näidisrakendus</p>

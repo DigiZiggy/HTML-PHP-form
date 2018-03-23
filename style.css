@@ -43,6 +43,7 @@ body {
 
 /*FOOTER*/
 #footer {
+    clear: both;
     background-color: #ff3399;
     border: 1px solid #ddd;
     margin-top: 1em;
@@ -64,8 +65,9 @@ body {
 }
 
 input {
-
+    float: right;
 }
+
 
 input[name=salvesta] {
 
