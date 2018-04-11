@@ -1,70 +1,86 @@
-<!DOCTYPE html>
-<html lang="et">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href ="style.css" rel="stylesheet" type="text/css">
-        <title>Harjutustund 1</title>
-        <style>
+<?php
+require_once("todofunctions.php");
+require "lib/tpl.php";
+
+$cmd = param('cmd') ? param('cmd') : 'main';
+
+$data = [];
 
 
-        </style>
-    </head>
-    <body>
+function validate_todo_item($item) {
+    $errorMessages = '';
+
+    if (empty($item)) {
+        $errorMessages .= "Input value cannot be empty!";
+    }
+    if (strlen($item) < 3 || strlen($item) > 20) {
+        $errorMessages .= "Some of the input values were too short or too long. Try again please!";
+    }
+ //   if (strlen($item) > 20) {
+  //      $errorMessages[] = "Pikkus ei tohi olla suurem kui 20 tähemärki";
+  //  }
+    return $errorMessages;
+}
 
 
-        <div id="tab">
-        <a href="index.php" id="list-page-link">Nimekiri</a>
-            <a> | </a>
-        <a href="secondpage.php" id="add-page-link">Lisa</a></div>
+if ($cmd === 'main') {
+
+    $items = get_items();
+    $data = ['$items' => $items];
+    $data['$template'] = 'tpl/list.html';
 
 
-         <table class = "table">
-             <tr>
-                 <th>Eesnimi</th>
-                 <th>Perekonnanimi</th>
-                 <th>Telefonid</th>
-             </tr>
-             <tr>
-                 <?php
-                 require_once("todofunctions.php");
-                 $items = get_items();
-                 $lines = file('data.txt');
-                    foreach ($lines as $line) {
-                        print $line;
-                    }
-                 ?>
-             </tr>
-             <tr>
-                 <td>
-                     <span>SIgird</span>
-                 </td>
-                 <td>
-                     <span>Narep</span>
-                 </td>
-                 <td>
-                     <span>937625171</span>
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <span>Charly</span>
-                 </td>
-                 <td>
-                     <span>Bean</span>
-                 </td>
-                 <td>
-                     <span>08217333</span>
-                 </td>
-             </tr>
-        </table>
+} else if ($cmd === 'ADDlisa') {
+    $data['$template'] = 'tpl/secondADDpage.html';
 
+} else if ($cmd === 'add') {
 
-        <footer>
-            <div id="footer">
-                <p>ICD0007 Näidisrakendus</p>
-            </div>
-        </footer>
-        
-    </body>
-</html>
+    if (isset($_POST["firstName"]) & isset($_POST["lastName"]) & isset($_POST["phone"])) {
+        $errors1 = validate_todo_item($_POST["firstName"]);
+        $errors2 = validate_todo_item($_POST["lastName"]);
+        $errors3 = validate_todo_item($_POST["phone"]);
+        if (strlen($errors1) == 0 & strlen($errors2) == 0 & strlen($errors3) == 0) {
+            add_firstName($_POST["firstName"]);
+            add_lastName($_POST["lastName"]);
+            add_phone($_POST["phone"]);
+        } else {
+            $errors[] = '';
+            array_push($errors, $errors1);
+            array_push($errors, $errors2);
+            array_push($errors, $errors3);
+            $data['$errors'] = $errors;
+        }
+//    } if (isset($_POST["lastName"])) {
+//        $errors = validate_todo_item($_POST["lastName"]);
+//        if (count($errors) == 0) {
+//            add_lastName($_POST["lastName"]);
+//        } else {
+//            $data['$errors'] = $errors;
+//        }
+//    } if (isset($_POST["phone"])) {
+//        $errors = validate_todo_item($_POST["phone"]);
+//        if (count($errors) == 0) {
+//            add_phone($_POST["phone"]);
+//        } else {
+//            $data['$errors'] = $errors;
+//        }
+    }
+
+    $data['$template'] = 'tpl/list.html';
+    $data['$items'] = get_items();
+}
+
+function param($key) {
+    if (isset($_GET[$key])) {
+        return $_GET[$key];
+    } else if (isset($_POST[$key])) {
+        return $_POST[$key];
+    } else {
+        return '';
+    }
+}
+
+print render_template('tpl/main.html', $data);
+
+?>
+

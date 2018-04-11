@@ -10,15 +10,14 @@ body {
 /*TABLE */
 
 .table {
-    margin: 0px;
     width: 100%;
     border-collapse: collapse;
     text-align: left;
+    margin-bottom: 2em;
 }
 
 
 .table th {
-    margin-left: 0px;
     font-weight: normal;
     padding: 1em 1em 0em;
     border-bottom:2pt solid black;
@@ -33,35 +32,36 @@ body {
 /* Style the tab */
 #tab {
     border: 1px solid #ddd;
-    background-color: #ff3399;
+    background-color: lightseagreen;
     padding: 0.5em;
 }
 
 #tab a {
+    color: white;
     text-decoration: none;
 }
 
 /*FOOTER*/
 #footer {
     clear: both;
-    background-color: #ff3399;
+    background-color: lightseagreen;
     border: 1px solid #ddd;
     margin-top: 1em;
     padding: 0.5em;
     text-align: right;
     color: #ffffff;
-    text-shadow: 2px 2px #990033;
 }
 
 /*ADD FORM PAGE*/
 
-.add-form {
-    width: 100%;
+#add-form {
+    margin-top: 1.5em;
+    width: 95%;
+
 }
 
-.add-form td {
-    text-align: right;
-    width: 50%;
+#add-form p {
+    padding-left: 10px;
 }
 
 input {
@@ -69,6 +69,12 @@ input {
 }
 
 
-input[name=salvesta] {
+input[name=submit-button] {
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+}
 
+#errors {
+    padding: 1em;
+    color: red;
 }

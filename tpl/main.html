@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href ="style.css" rel="stylesheet" type="text/css">
+    <title>Example application</title>
+</head>
+<body>
+<div id="errors" tpl-if="$errors">
+        <p tpl-foreach="$errors as $error">
+            {{ $error }}
+        </p>
+</div>
+
+<div tpl-include="tpl/header.html"></div>
+<div tpl-include="{{ $template }}"></div>
+<div tpl-include="tpl/footer.html"></div>
+
+</body>
+</html>

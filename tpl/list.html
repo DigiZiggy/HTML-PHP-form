@@ -1,0 +1,21 @@
+<table class = "table">
+        <tr>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Telefonid</th>
+        </tr>
+        <tr tpl-foreach="$items as $item">
+            <td>
+                <span>{{ $item[0] }}</span>
+                <input type="hidden" value="{{ echo $item[0] }}"/>
+            </td>
+            <td>
+                <span>{{ $item[1] }}</span>
+                <input type="hidden" value="{{ echo $item[1] }}"/>
+            </td>
+            <td>
+                <span>{{ $item[2] }}</span>
+                <input type="hidden" value="{{ echo $item[2] }}"/>
+            </td>
+        </tr>
+</table>
