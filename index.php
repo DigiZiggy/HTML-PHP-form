@@ -7,7 +7,6 @@ $cmd = param('cmd') ? param('cmd') : 'main';
 $data = [];
 
 
-
 function validate_todo_item($item) {
     $errorMessages = '';
     if (empty($item)) {
