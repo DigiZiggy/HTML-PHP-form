@@ -5,3 +5,5 @@ sigrid;narep;9789544
 karmen;silde;666666
 risto;plaat;8888888
 jhjhfj;kkkkk;000000
+asd;aqwe;123
+asd;ASD;123

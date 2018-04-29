@@ -66,6 +66,21 @@ body {
 
 input {
     float: right;
+    clear: both;
+    margin-bottom: 0.8em;
+}
+
+.form_text {
+    margin-bottom: 0.8em;
+
+}
+
+.clearfix:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
 }
 
 
