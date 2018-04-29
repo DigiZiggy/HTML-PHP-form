@@ -32,21 +32,25 @@ class Database
             $contact->id = $id;
             $contact->firstName = $firstName;
             $contact->lastName = $lastName;
+            //returnin database'ist numbreid array'na, ja liimin nad kokku yheks suureks stringiks
+            $contact_numbers = $this->getNumbersByContactID($id);
+            $contact->numbers = implode(", ", $contact_numbers);
 
-            $numbers = $this->getNumbersByContactID($id);
-             foreach ($numbers as $number) {
-
-             };
-            $contact->addNumber($row["number"]);
             $contacts[$id] = $contact;
 
         }
-        return array_values($contacts);
+        return $contacts;
     }
 
     function getNumbersByContactID($contact_id) {
         $statement = $this->connection->prepare(
             "select * from numbers where contact_id = ?");
-        return $statement->execute(array($contact_id));
+         $statement->execute(array($contact_id));
+         $numbers = [];
+        foreach ($statement as $row) {
+            $numbers[] = $row["number"];
+
+        }
+        return $numbers;
     }
 }

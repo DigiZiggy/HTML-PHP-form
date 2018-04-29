@@ -4,18 +4,18 @@
             <th>Perekonnanimi</th>
             <th>Telefonid</th>
         </tr>
-        <tr tpl-foreach="$items as $item">
+        <tr tpl-foreach="$all_contacts as $contact">
             <td>
-                <span>{{ $item[0] }}</span>
-                <input type="hidden" value="{{ echo $item[0] }}"/>
+                <span>{{ $contact->firstName }}</span>
+                <input type="hidden" value="{{ echo $contact->firstName }}"/>
             </td>
             <td>
-                <span>{{ $item[1] }}</span>
-                <input type="hidden" value="{{ echo $item[1] }}"/>
+                <span>{{ $contact->lastName }}</span>
+                <input type="hidden" value="{{ echo $contact->lastName }}"/>
             </td>
             <td>
-                <span>{{ $item[2] }}</span>
-                <input type="hidden" value="{{ echo $item[2] }}"/>
+                <span>{{ $contact->numbers }}</span>
+                <input type="hidden" value="{{ echo $contact->numbers }}"/>
             </td>
         </tr>
 </table>

@@ -11,11 +11,5 @@ class Contact
     public $id;
     public $firstName;
     public $lastName;
-    public $numbers = [];
-
-    function addNumber($number) {
-        if (isset($number)) {
-            $this->numbers[] = $number;
-        }
-    }
+    public $numbers;
 }
