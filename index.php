@@ -4,6 +4,7 @@ require_once ("Contact.php");
 require "lib/tpl.php";
 
 $cmd = param('cmd') ? param('cmd') : 'main';
+//session_start();
 $data = [];
 
 
@@ -18,6 +19,11 @@ function validate_todo_item($item) {
     return $errorMessages;
 }
 
+//function print_json($data) {
+//    header("Content-Type: application/json");
+//    print json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+//}
+
 
 if ($cmd === 'main') {
 
@@ -30,7 +36,7 @@ if ($cmd === 'main') {
     $data['$template'] = 'tpl/secondADDpage.html';
 
 
-} else if ($cmd === 'add') {
+} else if ($cmd === 'save') {
 
     $url=strtok($_SERVER["REQUEST_URI"],'?');
     header("Location: ".$url.'?cmd=main');
@@ -50,17 +56,14 @@ if ($cmd === 'main') {
                     "INSERT INTO contacts (firstName, lastName) values (?, ?);");
                 $statement->execute(array($_POST["firstName"],$_POST["lastName"]));
                 $contact_id = $connection->lastInsertId();
-
                 $statement = $connection->prepare(
                     "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
                 $statement->execute(array($_POST["phone1"], $contact_id, 'phone1'));
-
                 if (isset($_POST["phone2"]) && !empty($_POST["phone2"])) {
                     $statement = $connection->prepare(
                         "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
                     $statement->execute(array($_POST["phone2"], $contact_id, 'phone2'));
                 }
-
                 if (isset($_POST["phone3"]) && !empty($_POST["phone3"])) {
                     $statement = $connection->prepare(
                         "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
@@ -74,14 +77,27 @@ if ($cmd === 'main') {
         } else {
             $errors[] = '';
             array_push($errors, $errors1, $errors2, $errors3);
-            $database_handler = new Database();
-            $all_contacts = $database_handler->getAllContacts();
-            $data = ['$all_contacts' => $all_contacts];
-            $data['$errors'] = $errors;
-            $data['$template'] = 'tpl/list.html';
+            $url=strtok($_SERVER["REQUEST_URI"],'?');
+            header("Location: ".$url.'?cmd=main');
+
+//            $database_handler = new Database();
+//            $all_contacts = $database_handler->getAllContacts();
+//            $data = ['$all_contacts' => $all_contacts];
+//            $data['$errors'] = $errors;
+//            $data['$template'] = 'tpl/list.html';
 
         }
+     //   $cmd = 'add';
     }
+} else if ($cmd === 'add') {
+
+  //  print render_template('tpl/main.html', $data);
+
+ //   $input = json_decode(file_get_contents("php://input"), true);
+//    $url=strtok($_SERVER["REQUEST_URI"],'?');
+//    header("Location: ".$url.'?cmd=main');
+
+  //  http_response_code(204);
 }
 
 
