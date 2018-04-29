@@ -10,14 +10,12 @@ $data = [];
 
 function validate_todo_item($item) {
     $errorMessages = '';
-
     if (empty($item)) {
         $errorMessages .= "Input value cannot be empty!";
     }
     if (strlen($item) < 3 || strlen($item) > 20) {
         $errorMessages .= "Some of the input values were too short or too long. Try again please!";
     }
-
     return $errorMessages;
 }
 
@@ -28,7 +26,6 @@ if ($cmd === 'main') {
     $all_contacts = $database_handler->getAllContacts();
     $data = ['$all_contacts' => $all_contacts];
     $data['$template'] = 'tpl/list.html';
-
 
 } else if ($cmd === 'ADDlisa') {
     $data['$template'] = 'tpl/secondADDpage.html';
