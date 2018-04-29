@@ -70,10 +70,6 @@ if ($cmd === 'main') {
                         "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
                     $statement->execute(array($_POST["phone3"], $contact_id, 'phone3'));
                 }
-
-//                $url=strtok($_SERVER["REQUEST_URI"],'?');
-//                header("Location: ".$url.'?cmd=main');
-//                exit;
             }
             catch(PDOException $e)
             {
