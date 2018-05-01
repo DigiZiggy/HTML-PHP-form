@@ -6,6 +6,13 @@ require "lib/tpl.php";
 $connection = new PDO('sqlite:data.sqlite');
 // set the PDO error mode to exception
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// prepare sql statement to insert contact
+$statement = $connection->prepare(
+    "INSERT INTO contacts (firstName, lastName) values (?, ?);");
+$statement = $connection->prepare(
+    "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+$statement->execute();
+
 $cmd = param('cmd') ? param('cmd') : 'main';
 //session_start();
 $data = [];
