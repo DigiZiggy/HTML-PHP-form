@@ -19,6 +19,7 @@ function validate_todo_item($item) {
     return $errorMessages;
 }
 
+
 if ($cmd === 'main') {
     $database_handler = new Database();
     $all_contacts = $database_handler->getAllContacts();
@@ -52,7 +53,6 @@ if ($cmd === 'main') {
                     $statement->execute(array($_POST["phone3"], $contact_id, 'phone3'));
                 }
 
-        //        $url=strtok($_SERVER["REQUEST_URI"],'?');
                 header("Location: ?cmd=main");
 }
 
@@ -124,9 +124,6 @@ function param($key) {
         return '';
     }
 }
-//
-//print render_template('tpl/main.html', $data);
-
 
 
 ?>
