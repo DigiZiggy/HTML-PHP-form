@@ -5,7 +5,6 @@
  * Date: 28/4/18
  * Time: 3:39 PM
  */
-
 class Contact
 {
     public $id;

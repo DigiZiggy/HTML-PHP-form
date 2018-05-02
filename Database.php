@@ -16,7 +16,6 @@ class Database
     }
 
     function getAllContacts() {
-
         $statement = $this->connection->prepare(
             "select * from contacts");
         $statement->execute();
@@ -26,7 +25,6 @@ class Database
             $id = $row["id"];
             $firstName = $row["firstName"];
             $lastName = $row["lastName"];
-
 
             $contact = new Contact();
             $contact->id = $id;
