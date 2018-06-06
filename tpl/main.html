@@ -7,7 +7,7 @@
     <title>Example application</title>
 </head>
 <body>
-<div id="errors" tpl-if="$errors">
+<div id="error-block" tpl-if="$errors">
         <p tpl-foreach="$errors as $error">
             {{ $error }}
         </p>

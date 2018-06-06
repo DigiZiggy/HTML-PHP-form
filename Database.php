@@ -40,6 +40,69 @@ class Database
         return $contacts;
     }
 
+    function saveAllContacts() {
+        // prepare sql statement to insert contact
+        $statement = $this->connection->prepare(
+            "INSERT INTO contacts (firstName, lastName) values (?, ?);");
+        $statement->execute(array($_POST["firstName"],$_POST["lastName"]));
+        //viimasena lisatud id j2rgi poogin kylge ka telefoni numbrid tollele id'le niioelda
+        $contact_id = $this->connection->lastInsertId();
+        $statement = $this->connection->prepare(
+            "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+        $statement->execute(array($_POST["phone1"], $contact_id, 'phone1'));
+        if (isset($_POST["phone2"]) && !empty($_POST["phone2"])) {
+            $statement = $this->connection->prepare(
+                "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+            $statement->execute(array($_POST["phone2"], $contact_id, 'phone2'));
+        }
+        if (isset($_POST["phone3"]) && !empty($_POST["phone3"])) {
+            $statement = $this->connection->prepare(
+                "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+            $statement->execute(array($_POST["phone3"], $contact_id, 'phone3'));
+        }
+    }
+
+
+    function editThisContact($contact_id) {
+        $statement = $this->connection->prepare(
+            "UPDATE contacts set firstName = ?, lastName = ? WHERE id = $contact_id");
+        $statement->execute(array($_POST["firstName"],$_POST["lastName"]));
+
+        $statement = $this->connection->prepare(
+            "delete from numbers where contact_id = ?");
+        $statement->execute(array($contact_id));
+
+        $statement = $this->connection->prepare(
+            "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+        $statement->execute(array($_POST["phone1"], $contact_id, 'phone1'));
+        if (isset($_POST["phone2"]) && !empty($_POST["phone2"])) {
+            $statement = $this->connection->prepare(
+                "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+            $statement->execute(array($_POST["phone2"], $contact_id, 'phone2'));
+        }
+        if (isset($_POST["phone3"]) && !empty($_POST["phone3"])) {
+            $statement = $this->connection->prepare(
+                "INSERT INTO numbers (number, contact_id, type) values (?, ?, ?);");
+            $statement->execute(array($_POST["phone3"], $contact_id, 'phone3'));
+        }
+
+//        $statement = $this->connection->prepare(
+//            "UPDATE numbers set number = ?, contact_id = ?, type = ? WHERE contact_id = $contact_id");
+//        $statement->execute(array($_POST["phone1"], $contact_id, 'phone1'));
+//        if (isset($_POST["phone2"]) && !empty($_POST["phone2"])) {
+//            $statement = $this->connection->prepare(
+//                "UPDATE numbers set number = ?, contact_id = ?, type = ? WHERE contact_id = $contact_id");
+//            $statement->execute(array($_POST["phone2"], $contact_id, 'phone2'));
+//        }
+//        if (isset($_POST["phone3"]) && !empty($_POST["phone3"])) {
+//            $statement = $this->connection->prepare(
+//                "UPDATE numbers set number = ?, contact_id = ?, type = ? WHERE contact_id = $contact_id");
+//            $statement->execute(array($_POST["phone3"], $contact_id, 'phone3'));
+//        }
+
+    }
+
+
     function getNumbersByContactID($contact_id) {
         $statement = $this->connection->prepare(
             "select * from numbers where contact_id = ?");

@@ -1,21 +1,18 @@
 <table class = "table">
-        <tr>
-            <th>Eesnimi</th>
-            <th>Perekonnanimi</th>
-            <th>Telefonid</th>
-        </tr>
-        <tr tpl-foreach="$all_contacts as $contact">
-            <td>
-                <span>{{ $contact->firstName }}</span>
-                <input type="hidden" value="{{ echo $contact->firstName }}"/>
-            </td>
-            <td>
-                <span>{{ $contact->lastName }}</span>
-                <input type="hidden" value="{{ echo $contact->lastName }}"/>
-            </td>
-            <td>
-                <span>{{ $contact->numbers }}</span>
-                <input type="hidden" value="{{ echo $contact->numbers }}"/>
-            </td>
-        </tr>
+    <tr>
+        <th>Eesnimi</th>
+        <th>Perekonnanimi</th>
+        <th>Telefonid</th>
+    </tr>
+    <tr tpl-foreach="$all_contacts as $contact">
+        <td>
+            <a href="?cmd=edit_contact_{{ $contact->id }}">{{ $contact->firstName }}</a>
+        </td>
+        <td>
+            <span>{{ $contact->lastName }}</span>
+        </td>
+        <td>
+            <span>{{ $contact->numbers }}</span>
+        </td>
+    </tr>
 </table>
